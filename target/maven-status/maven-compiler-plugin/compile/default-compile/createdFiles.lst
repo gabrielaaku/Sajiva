@@ -1,0 +1,9 @@
+model\Akun.class
+model\DatabaseConnection.class
+com\mycompany\pbo\sajiva\resources\JakartaEE10Resource.class
+servlet\AkunDAO.class
+servlet\RegisterServlet.class
+com\mycompany\pbo\sajiva\JakartaRestConfiguration.class
+model\User.class
+model\Admin.class
+servlet\LoginServlet.class
