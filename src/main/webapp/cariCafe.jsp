@@ -4,6 +4,7 @@
     Author     : dinda salma
 --%>
 
+<%@page import="java.net.URLEncoder"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Cafe" %>
@@ -12,66 +13,52 @@
 <head>
     <meta charset="UTF-8" />
     <title>Cari Café - SAJIVA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f7fafc;
-        }
-        .form-select, .form-control {
-            border-radius: 8px;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f7fafc; }
+        .form-select, .form-control { border-radius: 8px; }
         .btn-green {
-            color: #155724;
-            background-color: #d4edda;
-            border-color: #c3e6cb;
+            color: #155724; background-color: #d4edda; border-color: #c3e6cb;
         }
         .btn-green:hover {
-            color: #0b2e13;
-            background-color: #c3e6cb;
-            border-color: #b1dfbb;
+            color: #0b2e13; background-color: #c3e6cb; border-color: #b1dfbb;
         }
-        h1, h5 {
-            color: #155724;
-        }
+        h1, h5 { color: #155724; }
     </style>
 </head>
 <body class="p-4">
 
 <%
     String keyword = request.getParameter("keyword");
-    String harga = request.getParameter("harga");
+    String jam_operasional = request.getParameter("jam_operasional");
     String suasana = request.getParameter("suasana");
-    
-    
-    boolean sudahCari = (keyword != null && !keyword.isEmpty()) || 
-                        (harga != null && !harga.isEmpty()) || 
+
+    boolean sudahCari = (keyword != null && !keyword.isEmpty()) ||
+                        (jam_operasional != null && !jam_operasional.isEmpty()) ||
                         (suasana != null && !suasana.isEmpty());
 
     List<Cafe> daftarCafe = (List<Cafe>) request.getAttribute("daftarCafe");
 %>
 
-<!-- Header Pencarian -->
 <section class="py-5 rounded mb-5 shadow-sm bg-white">
     <div class="container text-center">
         <h1 class="text-4xl font-semibold mb-3 tracking-wide">Temukan Café Favoritmu</h1>
-        <p class="text-md mb-4">Cari berdasarkan nama, harga, atau suasana</p>
+        <p class="text-md mb-4">Cari berdasarkan nama, jam buka, atau suasana</p>
 
         <form method="get" action="CariCafeServlet" class="row g-3 justify-content-center">
             <div class="col-md-4">
                 <input type="text" name="keyword" class="form-control" placeholder="Nama cafe..."
                        value="<%= keyword != null ? keyword : "" %>" />
             </div>
-
             <div class="col-md-2">
-                <select name="harga" class="form-select">
-                    <option value="">Harga</option>
-                    <option value="murah" <%= "murah".equals(harga) ? "selected" : "" %>>Murah</option>
-                    <option value="sedang" <%= "sedang".equals(harga) ? "selected" : "" %>>Sedang</option>
-                    <option value="mahal" <%= "mahal".equals(harga) ? "selected" : "" %>>Mahal</option>
+                <select name="jam_operasional" class="form-select">
+                    <option value="">Jam Operasional</option>
+                    <option value="10:00 - 22:00" <%= "10:00 - 22:00".equals(jam_operasional) ? "selected" : "" %>>10:00 - 22:00</option>
+                    <option value="09:00 - 00:00" <%= "09:00 - 00:00".equals(jam_operasional) ? "selected" : "" %>>09:00 - 00:00</option>
+                    <option value="24jam" <%= "24jam".equals(jam_operasional) ? "selected" : "" %>>24 Jam</option>
                 </select>
             </div>
+
             <div class="col-md-2">
                 <select name="suasana" class="form-select">
                     <option value="">Suasana</option>
@@ -88,7 +75,6 @@
     </div>
 </section>
 
-<!-- Hasil Pencarian -->
 <div class="container">
 <%
     if (daftarCafe == null || daftarCafe.isEmpty()) {
@@ -112,10 +98,14 @@
         <div class="col">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <h5 class="cext-4xl font-semibold mb-3 tracking-wide""><%= cafe.getNama() %></h5>
+                    <h5 class="cext-4xl font-semibold mb-3 tracking-wide">
+                        <a href="DetailCafeServlet?nama=<%= java.net.URLEncoder.encode(cafe.getNama(), "UTF-8") %>" style="text-decoration:none; color:#155724;">
+                            <%= cafe.getNama() %>
+                        </a>
+                    </h5>
                     <p class="card-text text-muted" style="font-size: 0.95rem;">
                         <strong>Alamat:</strong> <%= cafe.getAlamat() %><br/>
-                        <strong>Harga:</strong> <%= cafe.getHarga() %><br/>
+                        <strong>Range Harga:</strong> <%= cafe.getHarga() %><br/>
                         <strong>Suasana:</strong> <%= cafe.getSuasana() %><br/>
                         <strong>Jam Buka:</strong> <%= cafe.getJamOperasional() %>
                     </p>
@@ -129,10 +119,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-

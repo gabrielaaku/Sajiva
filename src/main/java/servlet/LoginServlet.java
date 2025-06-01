@@ -4,9 +4,9 @@ package servlet;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+import dao.AkunDAO;
 import model.Akun;
 import jakarta.servlet.*;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 /**
@@ -26,9 +26,9 @@ public class LoginServlet extends HttpServlet{
         if (akun != null && akun.getPassword().equals(password)) {
             request.getSession().setAttribute("loggedUser", akun);
             if ("admin".equalsIgnoreCase(akun.getRole())) {
-                response.sendRedirect("adminHome.jsp");
+                response.sendRedirect("tambahCafe.jsp");
             } else {
-                response.sendRedirect("userHome.jsp");
+                response.sendRedirect("cariCafe.jsp");
             }
         } else {
             response.sendRedirect("login.jsp?error=1");
