@@ -33,7 +33,18 @@
             Username atau password salah. Silakan coba lagi.
         </div>
         <% } %>
-
+        
+        <%
+            String notif = (String) session.getAttribute("notif");
+            if (notif != null) {
+        %>
+            <div style="color: green; margin-bottom: 10px;">
+                <%= notif %>
+            </div>
+        <%
+                session.removeAttribute("notif");
+            }
+        %>
         <form action="LoginServlet" method="post" id="loginForm">
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>

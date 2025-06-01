@@ -27,7 +27,7 @@
                 <!-- Nomor HP -->
                 <div class="mb-3">
                     <label for="nohp" class="form-label">Nomor HP:</label>
-                    <input type="tel" id="nohp" name="nohp" class="form-control" required placeholder="08xxxxxxxxxx" />
+                    <input type="tel" id="nohp" name="nohp" class="form-control" pattern="[0-9]+" required placeholder="08xxxxxxxxxx"/>
                 </div>
                 <!-- Username -->
                 <div class="mb-3">

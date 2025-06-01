@@ -24,6 +24,5 @@ public class DatabaseConnection {
             throw new SQLException("JDBC Driver tidak ditemukan.", e);
         }
     }
-
 }
 
