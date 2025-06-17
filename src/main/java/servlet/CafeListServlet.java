@@ -25,7 +25,7 @@ public class CafeListServlet extends HttpServlet {
             throws ServletException, IOException {
 
         CafeDAO dao = new CafeDAO();
-        List<Cafe> cafes = dao.getAllCafe(); // Sesuai method kamu
+        List<Cafe> cafes = dao.getAllCafe();
         request.setAttribute("cafes", cafes);
         request.getRequestDispatcher("/cariCafe.jsp").forward(request, response);
     }

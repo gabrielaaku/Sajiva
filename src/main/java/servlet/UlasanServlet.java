@@ -18,14 +18,13 @@ import java.sql.PreparedStatement;
  *
  * @author dinda salma
  */
-@WebServlet("/KritikSaranServlet")
-public class KritikSaranServlet extends HttpServlet {
+@WebServlet("/UlasanServlet")
+public class UlasanServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nama = request.getParameter("nama");
         String pesan = request.getParameter("pesan");
         String cafe = request.getParameter("cafe");
 
-        // Simpan ke DB
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sajiva", "root", "123");
@@ -41,7 +40,7 @@ public class KritikSaranServlet extends HttpServlet {
             response.sendRedirect("DetailCafeServlet?nama=" + java.net.URLEncoder.encode(cafe, "UTF-8"));
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("error", "Gagal menyimpan kritik dan saran: " + e.getMessage());
+            request.setAttribute("error", "Gagal menyimpan ulasan: " + e.getMessage());
         }
     }
 }

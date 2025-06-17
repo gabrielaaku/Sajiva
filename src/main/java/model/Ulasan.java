@@ -8,13 +8,13 @@ package model;
  *
  * @author dinda salma
  */
-public class KritikSaran {
+public class Ulasan {
     private int id;
     private String nama;
     private String cafe;
     private String pesan;
 
-    public KritikSaran(String nama, String cafe, String pesan) {
+    public Ulasan(String nama, String cafe, String pesan) {
         this.nama = nama;
         this.cafe = cafe;
         this.pesan = pesan;

@@ -23,7 +23,6 @@ public class TambahCafeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-
         String nama = request.getParameter("nama");
         String alamat = request.getParameter("alamat");
         String jamOperasional = request.getParameter("jam_operasional");

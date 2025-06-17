@@ -32,7 +32,7 @@
                         <i class="fas fa-coffee mr-3"></i> Kelola Café
                     </a>
                     
-                    <a href="logout.jsp" class="flex items-center px-4 py-3 text-sm text-red-400 hover:text-white hover:bg-red-600 rounded-lg">
+                    <a href="LogoutServlet" class="flex items-center px-4 py-3 text-sm text-red-400 hover:text-white hover:bg-red-600 rounded-lg">
                         <i class="fas fa-sign-out-alt mr-3"></i> Keluar
                     </a>
                 </nav>
@@ -40,7 +40,6 @@
         </div>
     </div>
 
-    <!-- Konten -->
     <div class="flex-1 p-8 overflow-y-auto">
         <h2 class="text-2xl font-bold text-stone-800 mb-4">Daftar Café</h2>
 
@@ -99,7 +98,8 @@
                     <td><%= c.getSuasana() %></td>
                     
                     <td>
-                        <a href="editCafe.jsp?id=<%= c.getNama() %>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="editCafe.jsp?id=<%= c.getId() %>" class="btn btn-warning btn-sm">Edit</a>
+
                         <a href="HapusCafeServlet?id=<%= c.getNama() %>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus café ini?')">Hapus</a>
                     </td>
                 </tr>

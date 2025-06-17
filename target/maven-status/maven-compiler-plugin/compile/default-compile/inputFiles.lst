@@ -1,6 +1,5 @@
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\servlet\CariCafeServlet.java
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\servlet\RegisterServlet.java
-C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\servlet\KritikSaranServlet.java
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\servlet\KelolaCafeServlet.java
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\model\DatabaseConnection.java
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\model\Cafe.java
@@ -11,10 +10,11 @@ C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\dao\Aku
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\servlet\LoginServlet.java
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\com\mycompany\pbo\sajiva\JakartaRestConfiguration.java
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\servlet\HapusCafeServlet.java
+C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\model\Ulasan.java
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\servlet\DetailCafeServlet.java
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\model\Admin.java
-C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\model\KritikSaran.java
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\com\mycompany\pbo\sajiva\resources\JakartaEE10Resource.java
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\dao\CafeDAO.java
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\servlet\TambahCafeServlet.java
+C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\servlet\UlasanServlet.java
 C:\Users\dinda salma\Documents\NetBeansProjects\PBO-Sajiva\src\main\java\model\Akun.java

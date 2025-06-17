@@ -105,18 +105,18 @@
     
 <hr class="my-5">
 
-<!-- Form Kritik dan Saran -->
+<!-- Form Ulasan -->
 <div class="kritik-saran-form p-3 bg-light rounded shadow-sm">
-    <h3 class="mb-3" style="color: #155724;">Kirim Kritik dan Saran untuk <%= cafe.getNama() %></h3>
+    <h3 class="mb-3" style="color: #155724;">Kirim Ulasan untuk <%= cafe.getNama() %></h3>
 
-    <form method="post" action="KritikSaranServlet">
+    <form method="post" action="UlasanServlet">
         <input type="hidden" name="cafe" value="<%= cafe.getNama() %>" />
         <div class="mb-3">
             <label for="nama" class="form-label detail-label">Nama Anda:</label>
             <input type="text" id="nama" name="nama" class="form-control" required />
         </div>
         <div class="mb-3">
-            <label for="pesan" class="form-label detail-label">Kritik dan Saran:</label>
+            <label for="pesan" class="form-label detail-label">Ulasan:</label>
             <textarea id="pesan" name="pesan" class="form-control" rows="4" required></textarea>
         </div>
         <button type="submit" class="btn btn-back mt-4">Kirim</button>
@@ -125,11 +125,9 @@
 
 <hr class="my-5">
 
-<!-- Tampilkan daftar Kritik dan Saran -->
 <div class="daftar-kritik-saran">
-    <h4 style="color: #155724;">Kritik dan Saran Sebelumnya</h4>
+    <h4 style="color: #155724;">Ulasan Sebelumnya</h4>
     <%
-        // Ambil data kritik dan saran langsung di JSP (simple version)
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/sajiva", "root", "123");
@@ -151,14 +149,14 @@
             }
             if (!adaData) {
     %>
-            <p class="text-muted">Belum ada kritik dan saran untuk café ini.</p>
+            <p class="text-muted">Belum ada ulasan untuk café ini.</p>
     <%
             }
             rs.close();
             ps.close();
             conn.close();
         } catch (Exception e) {
-            out.println("<p style='color:red;'>Error mengambil kritik dan saran: " + e.getMessage() + "</p>");
+            out.println("<p style='color:red;'>Error mengambil ulasan: " + e.getMessage() + "</p>");
         }
     %>
 </div>

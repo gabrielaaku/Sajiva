@@ -4,7 +4,7 @@ servlet\TambahCafeServlet.class
 servlet\CafeListServlet.class
 servlet\CariCafeServlet.class
 com\mycompany\pbo\sajiva\resources\JakartaEE10Resource.class
-servlet\KritikSaranServlet.class
+servlet\UlasanServlet.class
 com\mycompany\pbo\sajiva\JakartaRestConfiguration.class
 servlet\LoginServlet.class
 model\Akun.class
@@ -12,8 +12,8 @@ model\DatabaseConnection.class
 dao\AkunDAO.class
 servlet\KelolaCafeServlet.class
 model\Cafe.class
+model\Ulasan.class
 servlet\HapusCafeServlet.class
-model\KritikSaran.class
 servlet\RegisterServlet.class
 servlet\DetailCafeServlet.class
 model\User.class

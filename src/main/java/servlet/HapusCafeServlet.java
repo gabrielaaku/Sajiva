@@ -22,7 +22,7 @@ public class HapusCafeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String nama = request.getParameter("id"); // karena kamu kirim lewat query id=<nama>
+        String nama = request.getParameter("id");
 
         if (nama != null && !nama.trim().isEmpty()) {
             CafeDAO dao = new CafeDAO();

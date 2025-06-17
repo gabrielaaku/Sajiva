@@ -4,15 +4,19 @@
     Author     : dinda salma
 --%>
 
-<%@ page import="java.sql.*, model.DatabaseConnection" %>
+<%@ page import="java.sql.*, model.Cafe, dao.CafeDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%
-    String namaAwal = request.getParameter("nama_awal");
+    request.setCharacterEncoding("UTF-8");
+
+    int id = Integer.parseInt(request.getParameter("id"));
+    CafeDAO cafeDAO = new CafeDAO();
+
     String nama = "", alamat = "", jam = "", menu = "", harga = "", fasilitas = "", suasana = "", lat = "", lon = "";
     boolean submitted = request.getParameter("submit") != null;
 
     if (submitted) {
-        namaAwal = request.getParameter("nama_awal");
         nama = request.getParameter("nama");
         alamat = request.getParameter("alamat");
         jam = request.getParameter("jam_operasional");
@@ -23,59 +27,28 @@
         lat = request.getParameter("latitude");
         lon = request.getParameter("longitude");
 
-        Connection conn = null;
-        try {
-            conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(
-                "UPDATE cafe SET nama=?, alamat=?, jam_operasional=?, menu=?, harga=?, fasilitas=?, suasana=?, latitude=?, longitude=? WHERE nama=?"
-            );
-            stmt.setString(1, nama);
-            stmt.setString(2, alamat);
-            stmt.setString(3, jam);
-            stmt.setString(4, menu);
-            stmt.setString(5, harga);
-            stmt.setString(6, fasilitas);
-            stmt.setString(7, suasana);
-            stmt.setString(8, lat);
-            stmt.setString(9, lon);
-            stmt.setString(10, namaAwal);
+        Cafe updateCafe = new Cafe(id, nama, alamat, jam, menu, harga, fasilitas, suasana, lat, lon);
+        boolean success = cafeDAO.updateCafeById(id, updateCafe);
 
-            stmt.executeUpdate();
-            stmt.close();
-            conn.close();
-
+        if (success) {
             response.sendRedirect("kelolaCafe.jsp");
             return;
-        } catch (Exception e) {
-            out.println("Error: " + e.getMessage());
-        } finally {
-            if (conn != null) conn.close();
+        } else {
+            out.println("Gagal update data");
         }
+
     } else {
-        // Ambil data cafe pertama (karena cuma satu)
-        Connection conn = null;
-        try {
-            conn = DatabaseConnection.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM cafe LIMIT 1"); // hanya ambil satu
-            if (rs.next()) {
-                nama = rs.getString("nama");
-                alamat = rs.getString("alamat");
-                jam = rs.getString("jam_operasional");
-                menu = rs.getString("menu");
-                harga = rs.getString("harga");
-                fasilitas = rs.getString("fasilitas");
-                suasana = rs.getString("suasana");
-                lat = rs.getString("latitude");
-                lon = rs.getString("longitude");
-            }
-            rs.close();
-            stmt.close();
-            conn.close();
-        } catch (Exception e) {
-            out.println("Error loading data: " + e.getMessage());
-        } finally {
-            if (conn != null) conn.close();
+        Cafe cafe = cafeDAO.getCafeById(id);
+        if (cafe != null) {
+            nama = cafe.getNama();
+            alamat = cafe.getAlamat();
+            jam = cafe.getJamOperasional();
+            menu = cafe.getMenu();
+            harga = cafe.getHarga();
+            fasilitas = cafe.getFasilitas();
+            suasana = cafe.getSuasana();
+            lat = cafe.getLatitude();
+            lon = cafe.getLongitude();
         }
     }
 %>
@@ -94,7 +67,6 @@
     <h2 class="text-2xl font-semibold mb-6 text-[#155724] text-center">Edit Data Café</h2>
 
     <form method="post" class="space-y-4">
-        <!-- simpan nama awal (sebagai identifier saat update) -->
         <input type="hidden" name="nama_awal" value="<%= nama %>" />
 
         <div>
@@ -111,8 +83,13 @@
 
         <div>
             <label class="block font-semibold text-gray-700 mb-1" for="jam_operasional">Jam Operasional</label>
-            <input type="text" id="jam_operasional" name="jam_operasional" value="<%= jam %>" 
-                class="w-full border border-gray-300 rounded px-3 py-2" required />
+            <select id="jam_operasional" name="jam_operasional" 
+                class="w-full border border-gray-300 rounded px-3 py-2" required>
+                <option value="">Pilih Jam Operasional</option>
+                <option value="10:00 - 22:00" <%= "10:00 - 22:00".equals(jam) ? "selected" : "" %>>10:00 - 22:00</option>
+                <option value="09:00 - 00:00" <%= "09:00 - 00:00".equals(jam) ? "selected" : "" %>>09:00 - 00:00</option>
+                <option value="24jam" <%= "24jam".equals(jam) ? "selected" : "" %>>24 Jam</option>
+            </select>
         </div>
 
         <div>
@@ -135,8 +112,13 @@
 
         <div>
             <label class="block font-semibold text-gray-700 mb-1" for="suasana">Suasana</label>
-            <input type="text" id="suasana" name="suasana" value="<%= suasana %>" 
-                class="w-full border border-gray-300 rounded px-3 py-2" required />
+            <select id="suasana" name="suasana" 
+                class="w-full border border-gray-300 rounded px-3 py-2" required>
+                <option value="">Pilih Suasana</option>
+                <option value="cozy" <%= "cozy".equalsIgnoreCase(suasana) ? "selected" : "" %>>Cozy</option>
+                <option value="modern" <%= "modern".equalsIgnoreCase(suasana) ? "selected" : "" %>>Modern</option>
+                <option value="outdoor" <%= "outdoor".equalsIgnoreCase(suasana) ? "selected" : "" %>>Outdoor</option>
+            </select>
         </div>
 
         <div>

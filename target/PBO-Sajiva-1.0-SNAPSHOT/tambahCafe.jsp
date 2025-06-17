@@ -39,7 +39,6 @@
         </div>
     </div>
 
-    <!-- Konten Utama -->
     <div class="flex-1 p-8 overflow-y-auto">
         <h2 class="text-2xl font-bold text-stone-800 mb-4">Tambah Café Baru</h2>
         <p class="text-gray-600 mb-6">Masukkan informasi café baru ke sistem.</p>
@@ -77,13 +76,13 @@
                         <option value="">Pilih Jam Operasional</option>
                         <option value="10:00 - 22:00">10:00 - 22:00</option>
                         <option value="09:00 - 00:00">09:00 - 00:00</option>
-                        <option value="24jam">24 Jam</option>
+                        <option value="24 jam">24 Jam</option>
                     </select>
                 </div>
 
                 <div>
                     <label class="block text-gray-700 font-semibold">Menu (nama menu) </label>
-                    <input type="text" name="menu" class="w-full border p-2 rounded" placeholder="Kopi, Roti, atau link gambar menu" required />
+                    <input type="text" name="menu" class="w-full border p-2 rounded" placeholder="Kopi, Roti" required />
                 </div>
 
                 <div>

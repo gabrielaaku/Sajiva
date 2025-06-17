@@ -9,9 +9,24 @@ package model;
  * @author dinda salma
  */
 public class Cafe {
+    private int id;
     private String nama, alamat, jamOperasional, menu, harga, fasilitas, suasana, latitude, longitude;
       
-    public Cafe(String nama, String alamat, String jamOperasional, String menu, String harga, String fasilitas, String suasana, String latitude, String longitude) {
+    public Cafe(int id, String nama, String alamat, String jamOperasional, String menu, String harga, String fasilitas, String suasana, String latitude, String longitude) {
+        this.id = id;
+        this.nama = nama;
+        this.alamat = alamat;
+        this.jamOperasional = jamOperasional;
+        this.menu = menu;
+        this.harga = harga;
+        this.fasilitas = fasilitas;
+        this.suasana = suasana;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+    
+    public Cafe(String nama, String alamat, String jamOperasional, String menu, String harga,
+                String fasilitas, String suasana, String latitude, String longitude) {
         this.nama = nama;
         this.alamat = alamat;
         this.jamOperasional = jamOperasional;
@@ -23,6 +38,14 @@ public class Cafe {
         this.longitude = longitude;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getNama() {
         return nama;
     }
