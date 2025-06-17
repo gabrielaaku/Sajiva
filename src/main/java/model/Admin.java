@@ -10,7 +10,7 @@ package model;
  * @author dinda salma
  */
 
-import model.Akun;
+import dao.CafeDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -62,5 +62,28 @@ public class Admin extends Akun{
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public boolean tambahCafe(String nama, String alamat, String jamOperasional,
+                              String menu, int harga, String fasilitas, String suasana) {
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(
+                "INSERT INTO cafe (nama, alamat, jam_operasional, menu, harga, fasilitas, suasana, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            );
+            stmt.setString(1, nama);
+            stmt.setString(2, alamat);
+            stmt.setString(3, jamOperasional);
+            stmt.setString(4, menu);
+            stmt.setInt(5, harga);
+            stmt.setString(6, fasilitas);
+            stmt.setString(7, suasana);
+
+            int affectedRows = stmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
