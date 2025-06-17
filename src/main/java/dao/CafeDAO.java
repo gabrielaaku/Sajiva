@@ -50,6 +50,7 @@ public class CafeDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Cafe cafe = new Cafe(
+                    rs.getInt("id"),
                     rs.getString("nama"),
                     rs.getString("alamat"),
                     rs.getString("jam_operasional"),
@@ -118,6 +119,7 @@ public class CafeDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Cafe c = new Cafe(
+                        rs.getInt("id"),
                         rs.getString("nama"),
                         rs.getString("alamat"),
                         rs.getString("jam_operasional"),
@@ -164,13 +166,39 @@ public class CafeDAO {
     }
     
     public Cafe getCafeByNama(String nama) {
-    String sql = "SELECT * FROM cafe WHERE nama = ?";
+        String sql = "SELECT * FROM cafe WHERE nama = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, nama);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Cafe(
+                    rs.getInt("id"),
+                    rs.getString("nama"),
+                    rs.getString("alamat"),
+                    rs.getString("jam_operasional"),
+                    rs.getString("menu"),
+                    rs.getString("harga"),
+                    rs.getString("fasilitas"),
+                    rs.getString("suasana"),
+                    rs.getString("latitude"),
+                    rs.getString("longitude")
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public Cafe getCafeById(int id) {
+    String sql = "SELECT * FROM cafe WHERE id = ?";
     try (Connection conn = DatabaseConnection.getConnection();
          PreparedStatement ps = conn.prepareStatement(sql)) {
-        ps.setString(1, nama);
+        ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             return new Cafe(
+                rs.getInt("id"),
                 rs.getString("nama"),
                 rs.getString("alamat"),
                 rs.getString("jam_operasional"),
@@ -185,12 +213,30 @@ public class CafeDAO {
     } catch (Exception e) {
         e.printStackTrace();
     }
-    return null; // kalau tidak ketemu
+    return null;
 }
+public boolean updateCafeById(int id, Cafe cafe) {
+    String sql = "UPDATE cafe SET nama=?, alamat=?, jam_operasional=?, menu=?, harga=?, fasilitas=?, suasana=?, latitude=?, longitude=? WHERE id=?";
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-    public boolean updateCafe(Cafe cafe) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        stmt.setString(1, cafe.getNama());
+        stmt.setString(2, cafe.getAlamat());
+        stmt.setString(3, cafe.getJamOperasional());
+        stmt.setString(4, cafe.getMenu());
+        stmt.setString(5, cafe.getHarga());
+        stmt.setString(6, cafe.getFasilitas());
+        stmt.setString(7, cafe.getSuasana());
+        stmt.setString(8, cafe.getLatitude());
+        stmt.setString(9, cafe.getLongitude());
+        stmt.setInt(10, id);
+
+        return stmt.executeUpdate() > 0;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
     }
-
+}
 
 }

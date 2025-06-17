@@ -26,7 +26,6 @@ public class AkunDAO {
             stmt.setString(4, akun.getPassword());
             stmt.setString(5, akun.getRole());
 
-            // Eksekusi query
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

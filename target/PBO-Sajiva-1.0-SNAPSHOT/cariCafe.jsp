@@ -43,7 +43,7 @@
 <section class="py-5 rounded mb-5 shadow-sm bg-white">
     <div class="container text-center">
         <h1 class="text-4xl font-semibold mb-3 tracking-wide">Temukan Café Favoritmu</h1>
-        <p class="text-md mb-4">Cari berdasarkan nama, jam buka, atau suasana</p>
+        <p class="text-md mb-4">Cari berdasarkan nama, jam operasional, atau suasana</p>
 
         <form method="get" action="CariCafeServlet" class="row g-3 justify-content-center">
             <div class="col-md-4">
@@ -55,7 +55,7 @@
                     <option value="">Jam Operasional</option>
                     <option value="10:00 - 22:00" <%= "10:00 - 22:00".equals(jam_operasional) ? "selected" : "" %>>10:00 - 22:00</option>
                     <option value="09:00 - 00:00" <%= "09:00 - 00:00".equals(jam_operasional) ? "selected" : "" %>>09:00 - 00:00</option>
-                    <option value="24jam" <%= "24jam".equals(jam_operasional) ? "selected" : "" %>>24 Jam</option>
+                    <option value="24 jam" <%= "24 jam".equals(jam_operasional) ? "selected" : "" %>>24 Jam</option>
                 </select>
             </div>
 
@@ -105,9 +105,9 @@
                     </h5>
                     <p class="card-text text-muted" style="font-size: 0.95rem;">
                         <strong>Alamat:</strong> <%= cafe.getAlamat() %><br/>
+                        <strong>Jam Operasional:</strong> <%= cafe.getJamOperasional() %></br>
                         <strong>Range Harga:</strong> <%= cafe.getHarga() %><br/>
-                        <strong>Suasana:</strong> <%= cafe.getSuasana() %><br/>
-                        <strong>Jam Buka:</strong> <%= cafe.getJamOperasional() %>
+                        <strong>Suasana:</strong> <%= cafe.getSuasana() %>
                     </p>
                 </div>
             </div>
@@ -119,11 +119,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-

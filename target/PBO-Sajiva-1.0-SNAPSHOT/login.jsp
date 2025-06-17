@@ -24,7 +24,6 @@
       <div class="card-body">
         <h3 class="card-title text-center mb-4">SAJIVA Login</h3>
         
-        <!-- Error Message -->
         <% 
             String error = request.getParameter("error");
             if ("1".equals(error)) {

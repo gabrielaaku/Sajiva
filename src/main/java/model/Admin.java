@@ -10,7 +10,6 @@ package model;
  * @author dinda salma
  */
 
-import dao.CafeDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

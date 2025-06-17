@@ -15,10 +15,10 @@ public class DatabaseConnection {
     public static Connection getConnection() throws SQLException {
         String jdbcURL = "jdbc:mysql://localhost:3306/sajiva";
         String dbUser = "root";
-        String dbPassword = "123"; // Ganti ini kalau pakai password
+        String dbPassword = "123";
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); // Penting!
+            Class.forName("com.mysql.cj.jdbc.Driver"); 
             return DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
         } catch (ClassNotFoundException e) {
             throw new SQLException("JDBC Driver tidak ditemukan.", e);

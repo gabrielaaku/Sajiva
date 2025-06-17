@@ -19,7 +19,6 @@ public class LoginServlet extends HttpServlet{
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        // Cek apakah username dan password valid
         AkunDAO akunDAO = new AkunDAO();
         Akun akun = akunDAO.getByUsername(username);
         

@@ -47,10 +47,7 @@
                         <option value="admin">Admin</option>
                     </select>
                 </div>
-                <!-- Submit -->
                 <button type="submit" class="btn btn-success w-100">Daftar</button>
-
-                <!-- Link ke login -->
                 <div class="mt-3 text-center">
                     <a href="login.jsp">Sudah punya akun? Masuk di sini</a>
                 </div>
